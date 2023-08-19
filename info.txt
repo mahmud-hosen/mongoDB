@@ -1,0 +1,105 @@
+For NO SQL
+    table  = collection
+    row    = document
+    column = field
+
+
+    C:\Program Files\MongoDB\Server\6.0\
+    C:\Program Files\MongoDB\Server\4.4\data\
+
+
+#create a Database
+    >use database_name
+    like:
+    >use go48
+
+#Database Item show:
+    > show dbs
+
+            Ans: 
+            admin      0.000GB
+            config     0.000GB
+            ecommerce  0.000GB
+            local      0.000GB
+#Create a collection using the createCollection() database method.
+    >db.createCollection("posts")
+
+    Response:
+    { "ok" : 1 }
+
+#To insert a single document, use the insertOne() method.
+  >db.posts.insertOne({
+    title: "Post Title 1",
+    body: "Body of post.",
+    category: "News",
+    likes: 1,
+    tags: ["news", "events"],
+    date: Date()
+    })
+
+    Response:
+    {
+        "acknowledged" : true,
+        "insertedId" : ObjectId("64d7556c0912287de2c6aabb")
+    }
+
+#To insert multiple documents at once, use the insertMany() method.
+    >db.posts.insertMany([  
+    {
+        title: "Post Title 2",
+        body: "Body of post.",
+        category: "Event",
+        likes: 2,
+        tags: ["news", "events"],
+        date: Date()
+    },
+    {
+        title: "Post Title 3",
+        body: "Body of post.",
+        category: "Technology",
+        likes: 3,
+        tags: ["news", "events"],
+        date: Date()
+    },
+    {
+        title: "Post Title 4",
+        body: "Body of post.",
+        category: "Event",
+        likes: 4,
+        tags: ["news", "events"],
+        date: Date()
+    }
+    ])
+
+    Response:
+    {
+        "acknowledged" : true,
+        "insertedIds" : [
+                ObjectId("64d7560b0912287de2c6aabc"),
+                ObjectId("64d7560b0912287de2c6aabd"),
+                ObjectId("64d7560b0912287de2c6aabe")
+        ]
+    }
+
+# To select all data from a collection in MongoDB, we can use the find() method.
+    > db.posts.find()
+# To select only one document,It will return the first document it finds
+    >db.posts.findOne()
+    or
+    > db.posts.find().pretty().limit(1)
+    > db.posts.find().pretty().limit(1).skip(2)  // 1st two row skip
+
+#To query, or filter, data we can include a query in our find() or findOne() methods.
+    > db.posts.find({likes: 4})
+    or
+    >db.posts.find( {category: "News"} )
+
+#   select two column category, likes where category == 'Event'
+    >db.posts.find({category: 'Event'},{category: 1, likes: 1}).pretty()
+
+# For Update one row
+    > db.posts.updateOne({category: 'Technology'},{$set: {likes: 1001, title: 'post title update'}})
+# For upadte many row
+    > db.posts.updateMany({category: 'Event'},{$set: {likes: 3000, title: 'post title update'}})
+# For delete 
+    > db.posts.deleteOne({likes: 2000})

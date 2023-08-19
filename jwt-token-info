@@ -1,0 +1,15 @@
+
+1.  Need User by Registration for Appliaction
+2.  Registration User Data add in Database
+3.  Login by using Registration Data
+4.  If user 1st time succesfully login then we give to user JWT Token
+5.  Others all time when user want to data from server every time user pass JWT Token 
+    Server check this jwt token . If token match or valid server give data .
+    If not valid do not give data
+
+
+
+
+In Headers
+------------------
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1haG11ZCIsInVzZXJJZCI6IjY0ZTA1Njk4MjY4ZmQ5NDhkYmNjNzg2YiIsImlhdCI6MTY5MjQyNTQ1MSwiZXhwIjoxNjkyNDI5MDUxfQ.uQSU7CNKvTrYdQetmwiZc3TFGBal0RKmsmz5yZcDivo
